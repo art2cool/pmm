@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-1">
+      <div class="row">
+        <h3>{{username+"'s"}} messages</h3>
+        <div id="datepickr-calendar-1" ></div>
+          <script>
+
+        </script>
+        </div>
+        <!-- <calendar></calendar> -->
+      <div class="row">
+        <h3>Add new message</h3>
+        <!-- set current day -->
+        <div class="alert alert-danger" role="alert" ng-show="error">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span class="sr-only">Error:</span>
+          {{error}}
+        </div>
+        <div class="alert alert-success" role="alert" ng-show="complit">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span class="sr-only">Error:</span>
+          {{complit}}
+        </div>
+          <form ng-submit="submit()">
+            <div class="form-group">
+              <input type="date" class="form-control" value="2031-01-11" ng-model="date">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="subject" placeholder="Subject" ng-model="subject">
+            </div>
+            <div class="form-group">
+              <textarea name="message" class="form-control" rows="4" style="resize: none;" ng-model="message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+      </div>
+
+    </div>
+    <div class="col-sm-offset-1 col-sm-6">
+      <h2>{{messages[0].date | date}}</h2>
+      <div class="panel panel-default" ng-repeat="mess in messages">
+        <div class="panel-heading">{{mess.subject}}</div>
+        <div class="panel-body">
+          {{mess.message}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

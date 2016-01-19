@@ -1,0 +1,23 @@
+<div class="modal-dialog">
+  <div class="loginmodal-container">
+    <h1>Login to Your Account</h1>
+    <div class="alert alert-danger" role="alert" ng-show="error">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      {{error}}
+    </div>
+    <div class="alert alert-success" role="alert" ng-show="complit">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      {{complit}}
+    </div>
+    <form ng-submit="submit(formLabel.button)">
+      <input type="email" name="email" placeholder="Email" ng-model="email">
+      <input type="password" name="pass" placeholder="Password" ng-model="pass">
+      <input type="submit" name="login" class="login loginmodal-submit" value="Sing in">
+    </form>
+
+    <div class="login-help">
+      <a href="#" ui-sref="register">Register</a>
+    </div>
+  </div>
