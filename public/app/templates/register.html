@@ -1,0 +1,24 @@
+<div class="modal-dialog">
+  <div class="loginmodal-container">
+    <h1>Create Your Account</h1>
+    <div class="alert alert-danger" role="alert" ng-show="error">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      {{error}}
+    </div>
+    <div class="alert alert-success" role="alert" ng-show="complit">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      {{complit}}
+    </div>
+    <form ng-submit="submit()">
+      <input type="email" name="email" placeholder="Email" ng-model="email">
+      <input type="password" name="pass" placeholder="Password" ng-model="pass">
+      <input type="password" name="pass2" placeholder="Compare Password" ng-model="pass2">
+      <input type="submit" name="login"  class="login loginmodal-submit" value="Register">
+    </form>
+
+    <div class="login-help">
+      <a href="#" ui-sref="login">Sign in</a>
+    </div>
+  </div>
