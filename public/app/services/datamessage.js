@@ -1,15 +1,26 @@
-module.exports = ['$http', 'authToken', function($http, authToken) {
-    return {
-      getMesages: function (day, callback) {
-        var user = {user: authToken.getUser()};
-      var successCallback = function (data) {
 
-        callback(null, data.data);
-      }
-      var errorCallback = function (error) {
-        console.log(error);
-      }
-        $http.post('http://localhost:3000/messages/data' + day, user).then(successCallback, errorCallback);
+module.exports = ['$q','$http', 'authToken', function($q, $http, authToken) {
+var messages = [];
+    return {
+      getMesagesServer: function () {
+        var deferred = $q.defer();
+
+        var user = {user: authToken.getUser()};
+        console.log(user);
+        var successCallback = function (data) {
+          messages = data.data;
+          deferred.resolve();
+        }
+        var errorCallback = function (error) {
+           deferred.reject();
+
+        }
+        $http.post('http://localhost:3000/messages', user).then(successCallback, errorCallback)
+
+        return deferred.promise;
+      },
+      getMesages: function () {
+        return messages;
       }
     }
 
