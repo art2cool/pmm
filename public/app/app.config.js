@@ -5,39 +5,76 @@ var app = angular.module('MyApp');
 app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', '$locationProvider', function($urlRouterProvider, $stateProvider, $httpProvider, $locationProvider) {
 
 
-  $urlRouterProvider.otherwise('/messages/data');
+  $urlRouterProvider.otherwise('/messages');
 
   $stateProvider
   .state('main', {
-    url: '/messages/data',
-    templateUrl: '/templates/main.html',
+    url: '/messages',
+    views: {
+      'header': {
+        templateUrl: '/templates/header.html',
+        controller: "HeaderCtrl"
+      },
+      'content': {
+        templateUrl: '/templates/main.html',
+        controller: 'MainCtrl'
+      },
+    },
     resolve: {
       auth: ["$q", "$location", 'authToken',function($q, $location, authToken) {
-      var deferred = $q.defer();
-      deferred.resolve();
-      if (!authToken.isAuthenticated()) {
-         $location.path('/users/login');
-      }
+        var deferred = $q.defer();
+        deferred.resolve();
+
+        if (!authToken.isAuthenticated()) {
+          $location.path('/users/login');
+        }
       return deferred.promise;
-    }]
-  },
-  controller: 'MainCtrl'
+    }],
+      messages: ['dataMessage', function (dataMessage) {
+        return dataMessage.getMesagesServer();
+      }]
+    }
   })
   .state('login', {
     url: '/users/login',
-    templateUrl: '/templates/login.html',
-    controller: "LoginCtrl"
+      views: {
+      'header': {
+        templateUrl: '/templates/header.html',
+        controller: "HeaderCtrl"
+      },
+      'content': {
+        templateUrl: '/templates/login.html',
+        controller: 'LoginCtrl'
+      }
+    }
   })
   .state('register', {
     url: '/users/register',
-    templateUrl: '/templates/register.html',
-    controller: "RegisterCtrl"
+    views: {
+      'header': {
+        templateUrl: '/templates/header.html',
+        controller: "HeaderCtrl"
+      },
+      'content': {
+        templateUrl: '/templates/register.html',
+        controller: 'RegisterCtrl'
+      }
+    }
   })
   .state('help', {
     url: '/users/help',
-    templateUrl: '/templates/help.html',
-    controller: 'HelperCtrl'
+    views: {
+      'header': {
+        templateUrl: '/templates/header.html',
+        controller: "HeaderCtrl"
+      },
+      'content': {
+        templateUrl: '/templates/help.html',
+        controller: 'HelperCtrl'
+      }
+    }
   });
+
   $httpProvider.interceptors.push('authInterceptor');
 
 
