@@ -31,6 +31,7 @@ app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', '$locationP
       return deferred.promise;
     }],
       messages: ['dataMessage', function (dataMessage) {
+        
         return dataMessage.getMesagesServer();
       }]
     }

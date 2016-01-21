@@ -1,13 +1,14 @@
 module.exports =  function () {
-  var curentDate = new Date(2016,0);
+  var curentDate = new Date();
 
   return {
     getCurrentDate: function () {
+    //  console.log('setedDay: ' + curentDate.getFullYear() + ' ' + curentDate.getMonth())
       return curentDate;
     },
     setCurrentDate: function (date) {
+    //  console.log('setedDay: ' + curentDate.getFullYear() + ' ' + curentDate.getMonth())
       curentDate = date;
-      console.log('setedDay: ' + date.getFullYear() + ' ' + date.getMonth())
     }
   }
 };

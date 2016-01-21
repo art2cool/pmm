@@ -1,37 +1,23 @@
-module.exports = ['$compile','dataMessage',function ($compile,dataMessage) {
+module.exports = ['calendar_factory','dataMessage', 'messages_factory', function(calendar_factory, dataMessage, messages_factory) {
   return {
-    restrict: 'A',
-    controller: function () {
-
-      this.allMassages = function() {
-        return dataMessage.getMesages();
-      }
+    restrict: 'E',
+  //  controller: 'MainCtrl',
+    replace: true,
+    scope: {
+    //  getMessages: '&',
+      month: '@',
+      year: '@',
+      day: '@',
+      count: '@'
     },
-
+    template: "<span ng-click='$parent.getMessages(day)' count='{{day.count}}' class='datepickr-day' day='{{day.day}}' month='{{month}}' year='{{year}}'>{{day}}<sup><span  class='label label-info'>{{count}}</span></sup></span>",
     link: function (scope, element, attr, Ctrl) {
-      scope.messages = Ctrl.allMassages();
-        for(var i = 0; i < scope.messages.length; i++) {
-          var count = scope.messages[i].num_prod;
-          var messagedDate = new Date(scope.messages[i]._id);
-          var messageDay = messagedDate.getDate();
-          var messageYear = messagedDate.getFullYear();
-          var messageMonth = messagedDate.getMonth();
 
-           if( attr.day == messageDay && attr.month == messageMonth && attr.year == messageYear) {
-             var newEl = $compile('<sup><span class="label label-info">' + count + '</span></sup>')(scope);
-             element.append(newEl);
-           }
-        }
-
-        element.bind('mouseover', function () {
+      element.bind('mouseover', function () {
         element.css('background-color', '#DECECE');
       })
       element.bind('mouseleave', function () {
         element.css('background-color', '');
-      })
-      element.bind('mousedown', function () {
-        console.log(attr.day + ' ' + attr.month + ' ' + attr.year);
-
       })
     }
   }
