@@ -2,7 +2,7 @@
 
 var app = angular.module('MyApp');
 
-app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', '$locationProvider', function($urlRouterProvider, $stateProvider, $httpProvider, $locationProvider) {
+app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', function($urlRouterProvider, $stateProvider, $httpProvider) {
 
 
   $urlRouterProvider.otherwise('/messages');
@@ -21,7 +21,7 @@ app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', '$locationP
       },
     },
     resolve: {
-      auth: ["$q", "$location", 'authToken',function($q, $location, authToken) {
+      auth: ["$q", "$location", '$state', 'authToken',function($q, $location, $state, authToken) {
         var deferred = $q.defer();
         deferred.resolve();
 
@@ -31,7 +31,7 @@ app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', '$locationP
       return deferred.promise;
     }],
       messages: ['dataMessage', function (dataMessage) {
-        
+
         return dataMessage.getMesagesServer();
       }]
     }
@@ -77,6 +77,5 @@ app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', '$locationP
   });
 
   $httpProvider.interceptors.push('authInterceptor');
-
 
 }]);

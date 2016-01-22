@@ -3,9 +3,9 @@
   display: block;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
-  width: 430px;
+  width: 380px;
   border: 1px solid #C0C0C0;
-  border-radius: 5px;
+/*//  border-radius: 5px;*/
   padding: 0px;
   padding-left: 10px;
   background: #FFFFFF;
@@ -27,13 +27,14 @@
 
 .datepickr-weekdays {
   text-align: center;
-
+  /*margin: -15px;*/
+  padding-left: 0px;
   display: block;
 }
 
 .datepickr-weekday {
   display: inline-block;
-  width: 58px;
+  width: 48px;
   line-height: 29px;
 
 }
@@ -59,33 +60,14 @@
 
 .datepickr-day {
   display: inline-block;
-  width: 58px;
-  line-height: 48px;
+  width: 52px;
+  line-height: 40px;
   text-align: center;
   cursor: pointer;
   border: 1px solid #C0C0C0;
 }
 
-.datepickr-day:hover {
-  color: #111111;
-}
 
-.datepickr-disabled {
-  color: #999999;
-}
-
-.datepickr-disabled:hover {
-  color: #777778;
-}
-
-.datepickr-highlighted {
-  background: #2980B9;
-  color: #FFFFFF;
-}
-
-.datepickr-highlighted:hover {
-  color: #EEEEE1;
-}
 
 .datepickr-dragging {
   background: #3097DA;

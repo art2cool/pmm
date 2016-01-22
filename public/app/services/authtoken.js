@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function ($window) {
 
   var storage = $window.localStorage;
@@ -10,9 +12,9 @@ module.exports = function ($window) {
       storage.setItem (userToken, token);
     },
     getToken: function () {
-      if(!cashedToken)
+      if(!cashedToken) {
         cashedToken = storage.getItem(userToken);
-
+      }
       return cashedToken;
     },
     isAuthenticated: function() {
@@ -31,6 +33,6 @@ module.exports = function ($window) {
     removeUser: function () {
       storage.removeItem('user');
     }
-  }
+  };
   return authToken;
-}
+};

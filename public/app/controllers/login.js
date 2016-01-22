@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = ['$scope', '$http', '$state', 'authToken',  function($scope, $http, $state, authToken){
+module.exports = ['$scope', '$http', '$location', '$state', 'authToken',  function($scope, $http, $location, $state, authToken){
   $scope.submit = function () {
     $scope.error = '';
     function isValid() {
@@ -19,11 +19,11 @@ module.exports = ['$scope', '$http', '$state', 'authToken',  function($scope, $h
 
     var errorCallback = function(error, status) {
       $scope.error = error.data;
-      console.log(error);
+      console.log(error, status);
     };
 
-    var successCallback = function(data) {
-      var data = data.data;
+    var successCallback = function(resp) {
+      var data = resp.data;
       $scope.complit = 'User logined';
 
       authToken.setToken(data.token);
@@ -32,7 +32,8 @@ module.exports = ['$scope', '$http', '$state', 'authToken',  function($scope, $h
       console.log(data.user);
       setTimeout(function() {
         $state.go('main');
-      }, 2000);
+
+      }, 1000);
     };
     if(isValid){
     $http.post('http://localhost:3000/users/login',  {

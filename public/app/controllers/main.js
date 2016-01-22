@@ -1,10 +1,9 @@
 'use strict'
 
-module.exports = ['$http', '$scope', '$timeout', '$rootScope', 'authToken', 'dataMessage', 'messages_factory', function ($http, $scope, $timeout, $rootScope, authToken, dataMessage, messages_factory) {
+module.exports = ['$http', '$scope', '$timeout', 'authToken', 'dataMessage', 'messages_factory', function ($http, $scope, $timeout, authToken, dataMessage, messages_factory) {
   $scope.username = authToken.getUser().split('@')[0];
-  //$scope.dayMessages = [{"_id":"569b627c95e2e8062eec4238","subject":"New year ends","message":"Rly","date":"2016-01-01T22:00:00.000Z","author":"irapsdkiv@gmail.com","__v":0}];
-  //console.log($scope.dayMessages);
   $scope.getMessages = function (day) {
+
       var messageurl = '?year=' + $scope.year + '&month=' +  $scope.month + '&day=' + day;
         messages_factory.getMesages(messageurl, function(error, data) {
 
@@ -12,7 +11,7 @@ module.exports = ['$http', '$scope', '$timeout', '$rootScope', 'authToken', 'dat
       });
       console.log(day);
       //  console.log($scope.dayMessages)
-  }
+  };
 
   $scope.submit = function () {
     var messageObj = {
@@ -38,12 +37,12 @@ module.exports = ['$http', '$scope', '$timeout', '$rootScope', 'authToken', 'dat
         $scope.complit = '';
 
       }, 2000 );
-    }
+    };
     var errorCallback = function (error, status) {
-      console.log(error);
-    }
+      console.log(error, status);
+    };
 
     $http.post('http://localhost:3000/message/create', messageObj)
-    .then(successCallback, errorCallback)
-  }
-}]
+    .then(successCallback, errorCallback);
+  };
+}];
