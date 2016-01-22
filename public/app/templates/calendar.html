@@ -1,0 +1,21 @@
+<div class='datepickr'>
+  <div class='datepickr-top'>
+    <span ng-click='changeDate("left")' class='datepickr-left'>&lt;</span>
+    <span class='datepickr-date'>
+      <span class='datepickr-month'>{{monthWord}}</span>
+      <span class='datepickr-year'>{{year}}</span>
+    </span>
+  <span ng-click='changeDate("right")' class='datepickr-right' >&gt;</span>
+</div>
+<div class='datepickr-weekdays'>
+  <span class='datepickr-weekday'>Su</span>
+  <span class='datepickr-weekday'>Mo</span>
+  <span class='datepickr-weekday'>Tu</span>
+  <span class='datepickr-weekday'>We</span>
+  <span class='datepickr-weekday'>Th</span>
+  <span class='datepickr-weekday'>Fr</span>
+  <span class='datepickr-weekday'>Sa</span>
+</div>
+<div class='datepickr-days' >
+  <day-pick  ng-repeat='day in days track by $index'></day-pick>
+</div>

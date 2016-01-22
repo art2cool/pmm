@@ -33894,6 +33894,7 @@
 	      return deferred.promise;
 	    }],
 	      messages: ['dataMessage', function (dataMessage) {
+	        
 	        return dataMessage.getMesagesServer();
 	      }]
 	    }
@@ -34664,14 +34665,21 @@
 
 	'use strict'
 
-	module.exports = ['$http', '$scope', '$timeout', '$compile', '$location', 'authToken', 'dataMessage', function ($http, $scope, $timeout, $compile, $location, authToken, dataMessage) {
-	  $scope.data;
+	module.exports = ['$http', '$scope', '$timeout', '$rootScope', 'authToken', 'dataMessage', 'messages_factory', function ($http, $scope, $timeout, $rootScope, authToken, dataMessage, messages_factory) {
 	  $scope.username = authToken.getUser().split('@')[0];
-	  $scope.messages = [];
+	  //$scope.dayMessages = [{"_id":"569b627c95e2e8062eec4238","subject":"New year ends","message":"Rly","date":"2016-01-01T22:00:00.000Z","author":"irapsdkiv@gmail.com","__v":0}];
+	  //console.log($scope.dayMessages);
+	  $scope.getMessages = function (day) {
+	      var messageurl = '?year=' + $scope.year + '&month=' +  $scope.month + '&day=' + day;
+	        messages_factory.getMesages(messageurl, function(error, data) {
 
+	           $scope.dayMessages = data;
+	      });
+	      console.log(day);
+	      //  console.log($scope.dayMessages)
+	  }
 
 	  $scope.submit = function () {
-	    // var urlPath = $scope.date.getFullYear() + '-' + ( $scope.date.getMonth() + 1 )  + '-' + $scope.date.getDate();
 	    var messageObj = {
 	      user: authToken.getUser(),
 	      date: $scope.date,
@@ -34683,7 +34691,11 @@
 	    var successCallback = function (resp) {
 	      console.log(resp);
 	      $scope.complit = 'New task Added';
-
+	      $scope.dayMessages.push({
+	        subject: $scope.subject,
+	        message: $scope.message,
+	        date: $scope.date
+	        });
 	      $timeout(function() {
 	        $scope.date = '';
 	        $scope.subject = '';
@@ -34697,7 +34709,7 @@
 	    }
 
 	    $http.post('http://localhost:3000/message/create', messageObj)
-	      .then(successCallback, errorCallback)
+	    .then(successCallback, errorCallback)
 	  }
 	}]
 
@@ -34731,96 +34743,44 @@
 
 	var app = angular.module('MyApp');
 
-	app.directive('messenger', __webpack_require__(19));
+	//app.directive('messenger', require('./messenger.js'));
 	app.directive('calendar', __webpack_require__(20));
 	app.directive('dayPick', __webpack_require__(21));
 
 
 /***/ },
-/* 19 */
-/***/ function(module, exports) {
-
-	module.exports = [ function(){
-	    return {
-	      restrict: 'A',
-	      replace: false,
-	      link: function (scope, element, attr) {
-	      //  console.log(element.parent().parent().parent());
-	        element.on('click', function (e) {
-
-	          console.log(e.target);
-	//          dataMessage.getMesages(attr.day);
-	        });
-	      }
-	    }
-	}];
-
-
-/***/ },
+/* 19 */,
 /* 20 */
 /***/ function(module, exports) {
 
 	module.exports = ['calendar_factory', 'dataMessage', function(calendar_factory, dataMessage){
 	  return {
-	    template: "<div class='datepickr'><div class='datepickr-top'><span ng-click='changeDate(\"left\")' class='datepickr-left'>&lt;</span><span class='datepickr-date'><span class='datepickr-month'>{{monthWord}}</span> <span class='datepickr-year'>{{year}}</span></span><span ng-click='changeDate(\"right\")' class='datepickr-right' >&gt;</span></div><div class='datepickr-weekdays'><span class='datepickr-weekday'>Su</span><span class='datepickr-weekday'>Mo</span><span class='datepickr-weekday'>Tu</span><span class='datepickr-weekday'>We</span><span class='datepickr-weekday'>Th</span><span class='datepickr-weekday'>Fr</span><span class='datepickr-weekday'>Sa</span></div><div class='datepickr-days'><span class='datepickr-day' day='{{day}}' month='{{month}}' year='{{year}}' day-pick ng-repeat='day in days track by $index'>{{day}}</span></div></div> ",
+	    templateUrl: "templates/calendar.html",
 	    restrict: 'E',
+
 	    controller: function($scope) {
 	      var month_names_short = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-	      $scope.data;
 	        $scope.changeDate = function (direction) {
 	          calendar_factory.setingMonth(direction);
 
 	          $scope.buidMonth();
 	          }
 	        $scope.buidMonth = function () {
-
+	    //      $scope.messages = dataMessage.getMesages();
 	          $scope.year = calendar_factory.getYears();
 	          $scope.month = calendar_factory.getMonths();
 	          $scope.monthWord = month_names_short[$scope.month];
 	          $scope.days = calendar_factory.getDays();
 
-
-	          // dataMessage.getMesages(err, function (  ) {
-	          //   // body...
-	          // })
-	      //    $scope.monthChange();
-
 	        }
 	      $scope.buidMonth();
 
-	    //   $scope.monthChange = function (data) {
-	    //
-	    //     $(".datepickr-day").css('color', '');
-	    //
-	    //     var year = $(".datepickr-day").attr('year');
-	    //     var month = $(".datepickr-day").attr('month');
-	    //     debugger;
-	    //     for(var i = 0; i < data.length; i++) {
-	    //       var messagedDate = new Date(data[i]._id);
-	    //       var messageDay = messagedDate.getDate();
-	    //       var messageYear = messagedDate.getFullYear();
-	    //       var messageMonth = messagedDate.getMonth();
-	    //
-	    //       // console.log(messageYear + '-' + messageMonth + " - " + messageDay);
-	    //       // console.log(year + '-' + month);
-	    //
-	    //       var count = data[i].num_prod;
-	    //
-	    //       if( year == messageYear && month == messageMonth) {
-	    //
-	    //         var selector = "[day=" + messageDay + "]";
-	    //         $(selector).css('color', 'red');
-	    //         $(selector).attr('messenger', count);
-	    //
-	    //       var newEl = '<sup><span messenger class="label label-info">' + count + '</span></sup>';
-	    //         $(selector).append(newEl);
-	    //       }
-	    //
-	    //     }
-	    //   }
-	      }
-	    // link: function (scope, element, attr, Ctrl) {
-	    // }
+	    },
+	    link: function (scope, element, attr) {
+	      // element.bind('mousedown', function() {
+	      //   console.log('click')
+	      // });
+	    }
 	  }
 	}];
 
@@ -34829,40 +34789,26 @@
 /* 21 */
 /***/ function(module, exports) {
 
-	module.exports = ['$compile','dataMessage',function ($compile,dataMessage) {
+	module.exports = ['calendar_factory','dataMessage', 'messages_factory', function(calendar_factory, dataMessage, messages_factory) {
 	  return {
-	    restrict: 'A',
-	    controller: function () {
-
-	      this.allMassages = function() {
-	        return dataMessage.getMesages();
-	      }
+	    restrict: 'E',
+	  //  controller: 'MainCtrl',
+	    replace: true,
+	    scope: {
+	    //  getMessages: '&',
+	      month: '@',
+	      year: '@',
+	      day: '@',
+	      count: '@'
 	    },
-
+	    template: "<span ng-click='$parent.getMessages(day)' count='{{day.count}}' class='datepickr-day' day='{{day.day}}' month='{{month}}' year='{{year}}'>{{day}}<sup><span  class='label label-info'>{{count}}</span></sup></span>",
 	    link: function (scope, element, attr, Ctrl) {
-	      scope.messages = Ctrl.allMassages();
-	        for(var i = 0; i < scope.messages.length; i++) {
-	          var count = scope.messages[i].num_prod;
-	          var messagedDate = new Date(scope.messages[i]._id);
-	          var messageDay = messagedDate.getDate();
-	          var messageYear = messagedDate.getFullYear();
-	          var messageMonth = messagedDate.getMonth();
 
-	           if( attr.day == messageDay && attr.month == messageMonth && attr.year == messageYear) {
-	             var newEl = $compile('<sup><span class="label label-info">' + count + '</span></sup>')(scope);
-	             element.append(newEl);
-	           }
-	        }
-
-	        element.bind('mouseover', function () {
+	      element.bind('mouseover', function () {
 	        element.css('background-color', '#DECECE');
 	      })
 	      element.bind('mouseleave', function () {
 	        element.css('background-color', '');
-	      })
-	      element.bind('mousedown', function () {
-	        console.log(attr.day + ' ' + attr.month + ' ' + attr.year);
-
 	      })
 	    }
 	  }
@@ -34987,15 +34933,16 @@
 /***/ function(module, exports) {
 
 	module.exports =  function () {
-	  var curentDate = new Date(2016,0);
+	  var curentDate = new Date();
 
 	  return {
 	    getCurrentDate: function () {
+	    //  console.log('setedDay: ' + curentDate.getFullYear() + ' ' + curentDate.getMonth())
 	      return curentDate;
 	    },
 	    setCurrentDate: function (date) {
+	    //  console.log('setedDay: ' + curentDate.getFullYear() + ' ' + curentDate.getMonth())
 	      curentDate = date;
-	      console.log('setedDay: ' + date.getFullYear() + ' ' + date.getMonth())
 	    }
 	  }
 	};
@@ -35005,9 +34952,10 @@
 /* 27 */
 /***/ function(module, exports) {
 
-	module.exports = ['dateBuilder', function (dateBuilder) {
+	module.exports = ['dateBuilder','dataMessage', function (dateBuilder, dataMessage) {
 	  var endOf;
 
+	  var messages = dataMessage.getMesages();
 	  var curentDate = dateBuilder.getCurrentDate();
 	  var y = curentDate.getFullYear(),
 	      m = curentDate.getMonth();
@@ -35018,11 +34966,27 @@
 	  function createMonthDays(firstDay, lastDay) {
 	    var array = [];
 
+	    var curentDate = dateBuilder.getCurrentDate();
+	    var y = curentDate.getFullYear(),
+	        m = curentDate.getMonth();
+
 	    for (var i = 0; i < firstDay; i++) {
-	      array.push('.');
+	      array.push({day: '.'});
 	    }
 	    for (var i = 0; i < lastDay; i++) {
-	      array.push(i + 1);
+	      var counts= '';
+	      for(var j = 0; j < messages.length; j++) {
+	         var messagedDate = new Date(messages[j]._id);
+	         var messageDay = messagedDate.getDate();
+	         var messageYear = messagedDate.getFullYear();
+	         var messageMonth = messagedDate.getMonth();
+
+	         if( (i + 1) == messageDay && m == messageMonth && y == messageYear) {
+	           counts = messages[j].num_prod;
+	          }
+	       }
+	      array.push({day: i + 1, month: m, year: y, count: counts});
+	      // debugger;
 	    }
 	    if(firstDay <= 5) {
 	      endOf =  42 - lastDay - firstDay - 7;
@@ -35030,7 +34994,7 @@
 	      endOf =  42 - lastDay - firstDay;
 	    }
 	    for (var i = 0; i < endOf; i++) {
-	      array.push('.');
+	      array.push({day: '.'});
 	    }
 	    return array;
 	  }
@@ -35071,27 +35035,29 @@
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = ['$http', 'authToken', function($http, authToken) {
-	    var messages = [];
-
-	    var successCallback = function(data) {
-
-	      var messagedDate = new Date($scope.data[0]._id);
-	      var messageDay = messagedDate.getDate();
-	      var messageYear = messagedDate.getFullYear();
-	      var messageMonth = messagedDate.getMonth();
-
-	      var messageurl = '?year=' + messageYear + '&month=' + messageMonth + '&day=' + messageDay;
-	      dataMessage.getMesages(messageurl, function (err, data) {
-	        if(err) throw err;
-
-	      });
-	      };
-	    var user = {user: authToken.getUser()};
-	    $http.post('http://localhost:3000/messages', user).then(successCallback, errorCallback);
+	module.exports = ['$http', '$rootScope', 'authToken', function($http, $rootScope, authToken) {
+	  var dayMessages= [];
 	    return {
-	      
+	      getMesages: function (day,callback) {
+	        var user = {user: authToken.getUser()};
+	        var successCallback = function (data) {
+	          dayMessages = data.data;
+	          callback(null, dayMessages)
+	        //  console.log(data.data);
+	        }
+	        var errorCallback = function (error) {
+	          console.log(error);
+	          callback(error, null);
+	        }
+	        $http.post('http://localhost:3000/messages/data' + day, user).then(successCallback, errorCallback);
+	      },
+	      get: function () {
+	        return dayMessages
+	      }
+
 	    }
+
+
 	}];
 
 

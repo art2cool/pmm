@@ -35,8 +35,8 @@
 
     </div>
     <div class="col-sm-offset-1 col-sm-6">
-      <h2>{{messages[0].date | date}}</h2>
-      <div class="panel panel-default" ng-repeat="mess in messages">
+      <h2>{{dayMessages[0].date | date}}</h2>
+      <div class="panel panel-default" ng-repeat="mess in dayMessages">
         <div class="panel-heading">{{mess.subject}}</div>
         <div class="panel-body">
           {{mess.message}}
