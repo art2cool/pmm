@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports =  function () {
   var curentDate = new Date();
 
@@ -10,5 +12,5 @@ module.exports =  function () {
     //  console.log('setedDay: ' + curentDate.getFullYear() + ' ' + curentDate.getMonth())
       curentDate = date;
     }
-  }
+  };
 };

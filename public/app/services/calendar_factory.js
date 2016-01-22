@@ -1,25 +1,20 @@
+'use strict';
+
 module.exports = ['dateBuilder','dataMessage', function (dateBuilder, dataMessage) {
   var endOf;
-
   var messages = dataMessage.getMesages();
-  var curentDate = dateBuilder.getCurrentDate();
-  var y = curentDate.getFullYear(),
-      m = curentDate.getMonth();
-
-  var firstDay = new Date(y, m, 1);
-  var lastDay = new Date(y, m + 1, 0);
 
   function createMonthDays(firstDay, lastDay) {
-    var array = [];
+    var i, array = [];
 
     var curentDate = dateBuilder.getCurrentDate();
     var y = curentDate.getFullYear(),
         m = curentDate.getMonth();
 
-    for (var i = 0; i < firstDay; i++) {
+    for (i = 0; i < firstDay; i++) {
       array.push({day: '.'});
     }
-    for (var i = 0; i < lastDay; i++) {
+    for (i = 0; i < lastDay; i++) {
       var counts= '';
       for(var j = 0; j < messages.length; j++) {
          var messagedDate = new Date(messages[j]._id);
@@ -27,19 +22,18 @@ module.exports = ['dateBuilder','dataMessage', function (dateBuilder, dataMessag
          var messageYear = messagedDate.getFullYear();
          var messageMonth = messagedDate.getMonth();
 
-         if( (i + 1) == messageDay && m == messageMonth && y == messageYear) {
+         if( (i + 1) === messageDay && m === messageMonth && y === messageYear) {
            counts = messages[j].num_prod;
           }
        }
       array.push({day: i + 1, month: m, year: y, count: counts});
-      // debugger;
     }
     if(firstDay <= 5) {
       endOf =  42 - lastDay - firstDay - 7;
     } else {
       endOf =  42 - lastDay - firstDay;
     }
-    for (var i = 0; i < endOf; i++) {
+    for ( i = 0; i < endOf; i++) {
       array.push({day: '.'});
     }
     return array;
@@ -73,5 +67,5 @@ module.exports = ['dateBuilder','dataMessage', function (dateBuilder, dataMessag
         dateBuilder.setCurrentDate(new Date(y,m,0));
       }
     },
-  }
-}]
+  };
+}];

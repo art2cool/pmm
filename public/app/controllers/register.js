@@ -19,8 +19,8 @@ module.exports = ['$scope', '$http', '$state', 'authToken',  function($scope, $h
         }
 
         //TODO promises
-        var successCallback = function(data) {
-          var data = data.data;
+        var successCallback = function(resp) {
+          var data = resp.data;
             $scope.complit = 'User registrated';
             authToken.setToken(data.token);
             authToken.setUser(data.user.email);
@@ -31,7 +31,7 @@ module.exports = ['$scope', '$http', '$state', 'authToken',  function($scope, $h
         };
         var errorCallback = function(error, status) {
             $scope.error = error.data;
-            console.log(error);
+            console.log(error, status);
         };
 
         if(isValid()) {
@@ -39,9 +39,7 @@ module.exports = ['$scope', '$http', '$state', 'authToken',  function($scope, $h
                 email: $scope.email,
                 pass: $scope.pass,
                 pass2: $scope.pass2
-            }).then(successCallback, errorCallback)
+            }).then(successCallback, errorCallback);
         }
-
-
-    }
+    };
 }];

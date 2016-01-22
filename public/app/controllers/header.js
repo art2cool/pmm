@@ -8,11 +8,13 @@ module.exports = ['$scope', '$http', 'authToken', '$state',  function($scope, $h
 
 			$http.get('/users/logout').then(function(request) {
 				authToken.removeToken();
-				authToken.removeUser()
+				authToken.removeUser();
 				$scope.isAuthenticated = authToken.isAuthenticated;
 				$state.go('login');
-		}, function(err) { console.log(err)});
-		}
+		}, function(err) {
+			 console.log(err);
+		 });
+	 };
 
 
 }];
