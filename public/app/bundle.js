@@ -33871,16 +33871,6 @@
 	  $stateProvider
 	  .state('main', {
 	    url: '/messages',
-	    views: {
-	      'header': {
-	        templateUrl: '/templates/header.html',
-	        controller: "HeaderCtrl"
-	      },
-	      'content': {
-	        templateUrl: '/templates/main.html',
-	        controller: 'MainCtrl'
-	      },
-	    },
 	    resolve: {
 	      auth: ["$q", "$location", '$state', 'authToken',function($q, $location, $state, authToken) {
 	        var deferred = $q.defer();
@@ -33894,7 +33884,17 @@
 	      messages: ['dataMessage', function (dataMessage) {
 	        return dataMessage.getMesagesServer();
 	      }]
-	    }
+	    },
+	    views: {
+	      'header': {
+	        templateUrl: '/templates/header.html',
+	        controller: "HeaderCtrl"
+	      },
+	      'content': {
+	        templateUrl: '/templates/main.html',
+	        controller: 'MainCtrl'
+	      },
+	    },
 	  })
 	  .state('main.data', {
 	    url: '^/messages/data?year&month&day',
@@ -34109,6 +34109,10 @@
 	  };
 	
 	  $scope.dayMessages = messagesFactory.get();
+	
+	$scope.removeMessage = function(messId) {
+	  messagesFactory.deleteMessage(messId);
+	};
 	
 	  $scope.submit = function () {
 	
@@ -34474,6 +34478,24 @@
 	    },
 	    get: function () {
 	      return dayMessages;
+	    },
+	    deleteMessage: function(messId) {
+	
+	      var successCallback = function () {
+	        for(var i = 0; i < dayMessages.length; i++) {
+	          if(dayMessages[i]._id === messId ) {
+	            dayMessages.splice(i, 1);
+	          }
+	        }
+	      };
+	      var errorCallback = function (error) {
+	        console.log(error);
+	      };
+	
+	      $http.post('http://localhost:3000/message/remove', {id: messId})
+	      .then(successCallback, errorCallback);
+	
+	
 	    },
 	    setMessages: function (messageObj, callback) {
 	

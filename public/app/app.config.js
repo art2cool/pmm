@@ -9,16 +9,6 @@ app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', function($u
   $stateProvider
   .state('main', {
     url: '/messages',
-    views: {
-      'header': {
-        templateUrl: '/templates/header.html',
-        controller: "HeaderCtrl"
-      },
-      'content': {
-        templateUrl: '/templates/main.html',
-        controller: 'MainCtrl'
-      },
-    },
     resolve: {
       auth: ["$q", "$location", '$state', 'authToken',function($q, $location, $state, authToken) {
         var deferred = $q.defer();
@@ -32,7 +22,17 @@ app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', function($u
       messages: ['dataMessage', function (dataMessage) {
         return dataMessage.getMesagesServer();
       }]
-    }
+    },
+    views: {
+      'header': {
+        templateUrl: '/templates/header.html',
+        controller: "HeaderCtrl"
+      },
+      'content': {
+        templateUrl: '/templates/main.html',
+        controller: 'MainCtrl'
+      },
+    },
   })
   .state('main.data', {
     url: '^/messages/data?year&month&day',
