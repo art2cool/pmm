@@ -2,5 +2,5 @@
 
 var app = angular.module('MyApp');
 
-app.directive('calendar', require('./calendar.js'));
-app.directive('dayPick', require('./day_pick.js'));
+app.directive('calendar', require('./calendar.directive.js'));
+app.directive('dayPick', require('./dayPick.directive.js'));

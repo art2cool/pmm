@@ -5,11 +5,9 @@ module.exports =  function () {
 
   return {
     getCurrentDate: function () {
-    //  console.log('setedDay: ' + curentDate.getFullYear() + ' ' + curentDate.getMonth())
       return curentDate;
     },
     setCurrentDate: function (date) {
-    //  console.log('setedDay: ' + curentDate.getFullYear() + ' ' + curentDate.getMonth())
       curentDate = date;
     }
   };

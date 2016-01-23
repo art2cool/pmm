@@ -29476,7 +29476,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".datepickr {\r\n  color: #333333;\r\n  display: block;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 16px;\r\n  width: 380px;\r\n  border: 1px solid #C0C0C0;\r\n/*//  border-radius: 5px;*/\r\n  padding: 0px;\r\n  padding-left: 10px;\r\n  background: #FFFFFF;\r\n  padding-bottom: 10px;\r\n\r\n  /* Disable selection */\r\n  -webkit-touch-callout: none;\r\n  -webkit-user-select: none;\r\n  -khtml-user-select: none;\r\n  -moz-user-select: none;\r\n  -ms-user-select: none;\r\n  user-select: none;\r\n}\r\n\r\n.datepickr-top {\r\n  margin-bottom: 10px;\r\n  text-align: center;\r\n}\r\n\r\n.datepickr-weekdays {\r\n  text-align: center;\r\n  /*margin: -15px;*/\r\n  padding-left: 0px;\r\n  display: block;\r\n}\r\n\r\n.datepickr-weekday {\r\n  display: inline-block;\r\n  width: 48px;\r\n  line-height: 29px;\r\n\r\n}\r\n\r\n.datepickr-left {\r\n  margin-right: 20px;\r\n}\r\n\r\n.datepickr-right {\r\n  margin-left: 20px;\r\n}\r\n\r\n.datepickr-left, .datepickr-right {\r\n  width: 29px;\r\n  line-height: 29px;\r\n  cursor: pointer;\r\n  display: inline-block;\r\n}\r\n\r\n.datepickr-left:hover, .datepickr-right:hover {\r\n  background: #DDDDD1;\r\n}\r\n\r\n.datepickr-day {\r\n  display: inline-block;\r\n  width: 52px;\r\n  line-height: 40px;\r\n  text-align: center;\r\n  cursor: pointer;\r\n  border: 1px solid #C0C0C0;\r\n}\r\n\r\n\r\n\r\n.datepickr-dragging {\r\n  background: #3097DA;\r\n  color: #FFFFFF;\r\n}\r\n\r\n.datepickr-dragnote {\r\n  font-size: 12px;\r\n  width: 90%;\r\n  margin: 0 auto;\r\n  margin-top: 5px;\r\n  display: block;\r\n  line-height: 18px;\r\n}\r\n\r\n.datepickr {\r\n  padding: 4px 7px 10px;\r\n  /*padding-bottom: 10px;*/\r\n}\r\n", ""]);
+	exports.push([module.id, ".datepickr {\r\n  color: #333333;\r\n  display: block;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 16px;\r\n  width: 380px;\r\n  border: 1px solid #C0C0C0;\r\n/*//  border-radius: 5px;*/\r\n  padding: 0px;\r\n  padding-left: 10px;\r\n  background: #FFFFFF;\r\n  padding-bottom: 10px;\r\n\r\n  /* Disable selection */\r\n  -webkit-touch-callout: none;\r\n  -webkit-user-select: none;\r\n  -khtml-user-select: none;\r\n  -moz-user-select: none;\r\n  -ms-user-select: none;\r\n  user-select: none;\r\n}\r\n\r\n.datepickr-top {\r\n  margin-bottom: 10px;\r\n  text-align: center;\r\n}\r\n\r\n.datepickr-weekdays {\r\n  text-align: center;\r\n  /*margin: -15px;*/\r\n  padding-left: 0px;\r\n  display: block;\r\n}\r\n\r\n.datepickr-weekday {\r\n  display: inline-block;\r\n  width: 48px;\r\n  line-height: 29px;\r\n\r\n}\r\n\r\n.datepickr-left {\r\n  margin-right: 20px;\r\n}\r\n\r\n.datepickr-right {\r\n  margin-left: 20px;\r\n}\r\n\r\n.datepickr-left, .datepickr-right {\r\n  width: 29px;\r\n  line-height: 29px;\r\n  cursor: pointer;\r\n  display: inline-block;\r\n}\r\n\r\n.datepickr-left:hover, .datepickr-right:hover {\r\n  background: #DDDDD1;\r\n}\r\n\r\n.datepickr-day {\r\n  display: inline-block;\r\n  width: 52px;\r\n  line-height: 40px;\r\n  text-align: center;\r\n  cursor: pointer;\r\n  border: 1px solid #C0C0C0;\r\n}\r\n\r\n\r\n.datepickr-dragging {\r\n  background: #3097DA;\r\n  color: #FFFFFF;\r\n}\r\n\r\n.datepickr-dragnote {\r\n  font-size: 12px;\r\n  width: 90%;\r\n  margin: 0 auto;\r\n  margin-top: 5px;\r\n  display: block;\r\n  line-height: 18px;\r\n}\r\n\r\n.datepickr {\r\n  padding: 4px 7px 10px;\r\n  /*padding-bottom: 10px;*/\r\n}\r\n.selected {\r\n  background: #2980B9;\r\n\tcolor: #FFFFFF;\r\n}\r\n", ""]);
 	
 	// exports
 
@@ -33866,7 +33866,6 @@
 	
 	app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', function($urlRouterProvider, $stateProvider, $httpProvider) {
 	
-	
 	  $urlRouterProvider.otherwise('/messages');
 	
 	  $stateProvider
@@ -33885,7 +33884,7 @@
 	    resolve: {
 	      auth: ["$q", "$location", '$state', 'authToken',function($q, $location, $state, authToken) {
 	        var deferred = $q.defer();
-	        deferred.resolve();
+	          deferred.resolve();
 	
 	        if (!authToken.isAuthenticated()) {
 	          $location.path('/users/login');
@@ -33893,9 +33892,23 @@
 	      return deferred.promise;
 	    }],
 	      messages: ['dataMessage', function (dataMessage) {
-	
 	        return dataMessage.getMesagesServer();
 	      }]
+	    }
+	  })
+	  .state('main.data', {
+	    url: '^/messages/data?year&month&day',
+	    resolve: {
+	      data: ['$stateParams','messagesFactory', function($stateParams, messagesFactory) {
+	        return messagesFactory.getMesagessServer($stateParams);
+	        }
+	      ]
+	    },
+	    views: {
+	      'messages': {
+	        templateUrl: '/templates/messages.html',
+	        controller: "MainCtrl"
+	      },
 	    }
 	  })
 	  .state('login', {
@@ -33964,12 +33977,11 @@
 
 	'use strict';
 	
-	module.exports = ['$scope', '$http', '$location', '$state', 'authToken',  function($scope, $http, $location, $state, authToken){
+	module.exports = ['$scope', '$http', '$state', 'authToken',  function($scope, $http, $state, authToken){
 	  $scope.submit = function () {
 	    $scope.error = '';
 	    function isValid() {
 	
-	      //TODO remade validation
 	      if (!$scope.email || !$scope.pass){
 	        $scope.error = 'Fill all filds';
 	        return false;
@@ -33993,19 +34005,18 @@
 	      authToken.setToken(data.token);
 	      authToken.setUser(data.user.email);
 	
-	      console.log(data.user);
 	      setTimeout(function() {
 	        $state.go('main');
 	
 	      }, 1000);
 	    };
 	    if(isValid){
-	    $http.post('http://localhost:3000/users/login',  {
-	      email: $scope.email,
-	      pass: $scope.pass,
-	    }).then(successCallback, errorCallback)
-	  }
-	  }
+	      $http.post('http://localhost:3000/users/login',  {
+	        email: $scope.email,
+	        pass: $scope.pass,
+	      }).then(successCallback, errorCallback);
+	    }
+	  };
 	}];
 
 
@@ -34021,7 +34032,6 @@
 	
 	        function isValid() {
 	
-	          //TODO remade validation
 	            if (!$scope.email || !$scope.pass){
 	                $scope.error = 'Fill all filds';
 	                return false;
@@ -34033,7 +34043,6 @@
 	            }
 	        }
 	
-	        //TODO promises
 	        var successCallback = function(resp) {
 	          var data = resp.data;
 	            $scope.complit = 'User registrated';
@@ -34072,7 +34081,7 @@
 	
 	  		$scope.logout = function () {
 	
-				$http.get('/users/logout').then(function(request) {
+				$http.get('/users/logout').then(function() {
 					authToken.removeToken();
 					authToken.removeUser();
 					$scope.isAuthenticated = authToken.isAuthenticated;
@@ -34090,53 +34099,39 @@
 /* 15 */
 /***/ function(module, exports) {
 
-	'use strict'
+	'use strict';
 	
-	module.exports = ['$http', '$scope', '$timeout', 'authToken', 'dataMessage', 'messages_factory', function ($http, $scope, $timeout, authToken, dataMessage, messages_factory) {
+	module.exports = ['$http', '$state', '$scope', '$timeout', 'authToken', 'dataMessage', 'messagesFactory', function ($http, $state, $scope, $timeout, authToken, dataMessage, messagesFactory) {
 	  $scope.username = authToken.getUser().split('@')[0];
 	  $scope.getMessages = function (day) {
 	
-	      var messageurl = '?year=' + $scope.year + '&month=' +  $scope.month + '&day=' + day;
-	        messages_factory.getMesages(messageurl, function(error, data) {
-	
-	           $scope.dayMessages = data;
-	      });
-	      console.log(day);
-	      //  console.log($scope.dayMessages)
+	      $state.go('main.data', {'year': $scope.year, 'month' : $scope.month, 'day' : day });
 	  };
 	
+	  $scope.dayMessages = messagesFactory.get();
+	
 	  $scope.submit = function () {
+	
 	    var messageObj = {
 	      user: authToken.getUser(),
 	      date: $scope.date,
 	      subject: $scope.subject,
 	      message: $scope.message
 	    };
-	    console.log(messageObj);
 	
-	    var successCallback = function (resp) {
-	      console.log(resp);
-	      $scope.complit = 'New task Added';
-	      $scope.dayMessages.push({
-	        subject: $scope.subject,
-	        message: $scope.message,
-	        date: $scope.date
-	        });
-	      $timeout(function() {
-	        $scope.date = '';
-	        $scope.subject = '';
-	        $scope.message = '';
-	        $scope.complit = '';
+	  messagesFactory.setMessages(messageObj, function () {
+	       $scope.complit = 'New task Added';
+	        $scope.dayMessages = messagesFactory.get();
+	        $timeout(function() {
+	          $scope.date = '';
+	          $scope.subject = '';
+	          $scope.message = '';
+	          $scope.complit = '';
 	
-	      }, 2000 );
-	    };
-	    var errorCallback = function (error, status) {
-	      console.log(error, status);
-	    };
+	        }, 2000 );
+	  });
+	};
 	
-	    $http.post('http://localhost:3000/message/create', messageObj)
-	    .then(successCallback, errorCallback);
-	  };
 	}];
 
 
@@ -34177,21 +34172,23 @@
 
 	'use strict';
 	
-	module.exports = ['calendar_factory', function(calendar_factory){
+	module.exports = ['calendarFactory', function(calendarFactory){
 	  return {
 	    templateUrl: "templates/calendar.html",
 	    restrict: 'E',
 	    controller: function($scope) {
-	      var month_names_short = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	      var monthNamesShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 	        $scope.changeDate = function (direction) {
-	          calendar_factory.setingMonth(direction);
+	          calendarFactory.setingMonth(direction);
+	          var a = angular.element(document).find('.selected');
+	          a.removeClass('selected');
 	          $scope.buidMonth();
 	        };
 	        $scope.buidMonth = function () {
-	          $scope.year = calendar_factory.getYears();
-	          $scope.month = calendar_factory.getMonths();
-	          $scope.monthWord = month_names_short[$scope.month];
-	          $scope.days = calendar_factory.getDays();
+	          $scope.year = calendarFactory.getYears();
+	          $scope.month = calendarFactory.getMonths();
+	          $scope.monthWord = monthNamesShort[$scope.month];
+	          $scope.days = calendarFactory.getDays();
 	
 	        };
 	      $scope.buidMonth();
@@ -34206,7 +34203,7 @@
 
 	'use strict';
 	
-	module.exports =  function() {
+	module.exports = function() {
 	  return {
 	    restrict: 'E',
 	    replace: true,
@@ -34216,13 +34213,19 @@
 	      day: '@',
 	      count: '@'
 	    },
-	    template: "<span ng-click='$parent.getMessages(day)' count='{{day.count}}' class='datepickr-day' day='{{day.day}}' month='{{month}}' year='{{year}}'>{{day}}<sup><span  class='label label-info'>{{count}}</span></sup></span>",
+	    template: "<span ng-click='$parent.getMessages(day)' count='{{day.count}}' class='datepickr-day' day='{{day.day}}' month='{{month}}' year='{{year}}'>{{day}} <sup><span  class='label label-info'>{{count}}</span></sup></span>",
 	    link: function (scope, element) {
+	
 	      element.bind('mouseover', function () {
 	        element.css('background-color', '#DECECE');
 	      });
 	      element.bind('mouseleave', function () {
 	        element.css('background-color', '');
+	      });
+	      element.click('mousedown', function () {
+	        var a = angular.element(document).find('.selected');
+	        a.removeClass('selected');
+	        element.addClass('selected');
 	      });
 	    }
 	  };
@@ -34242,8 +34245,8 @@
 	app.service('dataMessage', __webpack_require__(23));
 	
 	app.factory('dateBuilder', __webpack_require__(24));
-	app.factory('calendar_factory', __webpack_require__(25));
-	app.factory('messages_factory', __webpack_require__(26));
+	app.factory('calendarFactory', __webpack_require__(25));
+	app.factory('messagesFactory', __webpack_require__(26));
 
 
 /***/ },
@@ -34325,12 +34328,12 @@
 	        var deferred = $q.defer();
 	
 	        var user = {user: authToken.getUser()};
-	
 	        var successCallback = function (data) {
 	          messages = data.data;
 	          deferred.resolve();
 	        };
 	        var errorCallback = function (error) {
+	          console.log(error);
 	           deferred.reject();
 	        };
 	        $http.post('http://localhost:3000/messages', user).then(successCallback, errorCallback);
@@ -34356,11 +34359,9 @@
 	
 	  return {
 	    getCurrentDate: function () {
-	    //  console.log('setedDay: ' + curentDate.getFullYear() + ' ' + curentDate.getMonth())
 	      return curentDate;
 	    },
 	    setCurrentDate: function (date) {
-	    //  console.log('setedDay: ' + curentDate.getFullYear() + ' ' + curentDate.getMonth())
 	      curentDate = date;
 	    }
 	  };
@@ -34450,26 +34451,50 @@
 
 	'use strict';
 	
-	module.exports = ['$http', '$rootScope', 'authToken', function($http, $rootScope, authToken) {
+	module.exports = ['$http', '$q', 'authToken', function($http, $q, authToken) {
 	  var dayMessages= [];
-	    return {
-	      getMesages: function (day,callback) {
-	        var user = {user: authToken.getUser()};
-	        var successCallback = function (data) {
-	          dayMessages = data.data;
-	          callback(null, dayMessages);
-	        };
-	        var errorCallback = function (error) {
-	          console.log(error);
-	          callback(error, null);
-	        };
-	        $http.post('http://localhost:3000/messages/data' + day, user).then(successCallback, errorCallback);
-	      },
-	      get: function () {
-	        return dayMessages;
-	      }
+	  return {
+	    getMesagessServer: function (param) {
 	
-	    };
+	      var deferred = $q.defer();
+	
+	      var user = {user: authToken.getUser()};
+	
+	      var successCallback = function (data) {
+	        dayMessages = data.data;
+	        deferred.resolve();
+	      };
+	      var errorCallback = function (error) {
+	        console.log(error);
+	        deferred.reject();
+	      };
+	
+	      $http.post('http://localhost:3000/messages/data' + '?year=' + param.year + '&month=' + param.month + '&day=' + param.day, user).then(successCallback, errorCallback);
+	      return deferred.promise;
+	    },
+	    get: function () {
+	      return dayMessages;
+	    },
+	    setMessages: function (messageObj, callback) {
+	
+	      var successCallback = function () {
+	        dayMessages.push({
+	          subject: messageObj.subject,
+	          message: messageObj.message,
+	          date: messageObj.date
+	          });
+	          callback();
+	      };
+	      var errorCallback = function (error) {
+	        console.log(error);
+	        callback();
+	      };
+	
+	      $http.post('http://localhost:3000/message/create', messageObj)
+	      .then(successCallback, errorCallback);
+	    }
+	
+	  };
 	}];
 
 

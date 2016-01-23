@@ -1,3 +1,5 @@
+'use strict';
+
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
@@ -11,7 +13,7 @@ var UserSchema = mongoose.Schema({
     },
     registreted: {
         type: Date,
-        default: new Date
+        default: Date.now
     },
     admin: {
         type: Boolean,
@@ -40,4 +42,4 @@ module.exports.comparePassword = function(pass, pass2, callback) {
 module.exports.updateMessage = function (data, callback) {
   var user = data.author;
   User.update({email: user}, {$push: {meessages_id: data._id}}, callback);
-}
+};
