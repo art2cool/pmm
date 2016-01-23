@@ -6,7 +6,6 @@ module.exports = ['$scope', '$http', '$state', 'authToken',  function($scope, $h
 
         function isValid() {
 
-          //TODO remade validation
             if (!$scope.email || !$scope.pass){
                 $scope.error = 'Fill all filds';
                 return false;
@@ -18,7 +17,6 @@ module.exports = ['$scope', '$http', '$state', 'authToken',  function($scope, $h
             }
         }
 
-        //TODO promises
         var successCallback = function(resp) {
           var data = resp.data;
             $scope.complit = 'User registrated';

@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -7,8 +9,6 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var expressValidator = require('express-validator');
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var session = require('express-session');
 
 var app = express();
 
@@ -23,8 +23,6 @@ mongoose.connect('mongodb://localhost/pmm', function (err) {
     console.log('Database connected');
   }
 });
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -56,8 +54,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
-// error handlers
 
 // development error handler
 // will print stacktrace

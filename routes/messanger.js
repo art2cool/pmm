@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var router = express.Router();
 var Message = require('../modules/message');
@@ -19,9 +21,9 @@ router.post('/create', function (req, res) {
       if (err) throw error;
 
       res.status(200).send({message: 'added'});
-    })
-  })
+    });
+  });
 
-})
+});
 
 module.exports = router;

@@ -4,7 +4,6 @@ var app = angular.module('MyApp');
 
 app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', function($urlRouterProvider, $stateProvider, $httpProvider) {
 
-
   $urlRouterProvider.otherwise('/messages');
 
   $stateProvider
@@ -23,7 +22,7 @@ app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', function($u
     resolve: {
       auth: ["$q", "$location", '$state', 'authToken',function($q, $location, $state, authToken) {
         var deferred = $q.defer();
-        deferred.resolve();
+          deferred.resolve();
 
         if (!authToken.isAuthenticated()) {
           $location.path('/users/login');
@@ -31,9 +30,23 @@ app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', function($u
       return deferred.promise;
     }],
       messages: ['dataMessage', function (dataMessage) {
-
         return dataMessage.getMesagesServer();
       }]
+    }
+  })
+  .state('main.data', {
+    url: '^/messages/data?year&month&day',
+    resolve: {
+      data: ['$stateParams','messagesFactory', function($stateParams, messagesFactory) {
+        return messagesFactory.getMesagessServer($stateParams);
+        }
+      ]
+    },
+    views: {
+      'messages': {
+        templateUrl: '/templates/messages.html',
+        controller: "MainCtrl"
+      },
     }
   })
   .state('login', {

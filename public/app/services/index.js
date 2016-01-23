@@ -2,10 +2,10 @@
 
 var app = angular.module('MyApp');
 
-app.service('authToken', require('./authtoken'));
-app.service('authInterceptor', require('./authinspector'));
-app.service('dataMessage', require('./datamessage'));
+app.service('authToken', require('./authtoken.service.js'));
+app.service('authInterceptor', require('./authinspector.service.js'));
+app.service('dataMessage', require('./dataMessage.service.js'));
 
-app.factory('dateBuilder', require('./date_builder'));
-app.factory('calendar_factory', require('./calendar_factory'));
-app.factory('messages_factory', require('./messages'));
+app.factory('dateBuilder', require('./dateBuilder.factory.js'));
+app.factory('calendarFactory', require('./calendar.factory.js'));
+app.factory('messagesFactory', require('./messages.factory.js'));

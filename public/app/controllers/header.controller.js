@@ -6,7 +6,7 @@ module.exports = ['$scope', '$http', 'authToken', '$state',  function($scope, $h
 
   		$scope.logout = function () {
 
-			$http.get('/users/logout').then(function(request) {
+			$http.get('/users/logout').then(function() {
 				authToken.removeToken();
 				authToken.removeUser();
 				$scope.isAuthenticated = authToken.isAuthenticated;

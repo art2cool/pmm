@@ -1,11 +1,10 @@
 'use strict';
 
-module.exports = ['$scope', '$http', '$location', '$state', 'authToken',  function($scope, $http, $location, $state, authToken){
+module.exports = ['$scope', '$http', '$state', 'authToken',  function($scope, $http, $state, authToken){
   $scope.submit = function () {
     $scope.error = '';
     function isValid() {
 
-      //TODO remade validation
       if (!$scope.email || !$scope.pass){
         $scope.error = 'Fill all filds';
         return false;
@@ -29,17 +28,16 @@ module.exports = ['$scope', '$http', '$location', '$state', 'authToken',  functi
       authToken.setToken(data.token);
       authToken.setUser(data.user.email);
 
-      console.log(data.user);
       setTimeout(function() {
         $state.go('main');
 
       }, 1000);
     };
     if(isValid){
-    $http.post('http://localhost:3000/users/login',  {
-      email: $scope.email,
-      pass: $scope.pass,
-    }).then(successCallback, errorCallback)
-  }
-  }
+      $http.post('http://localhost:3000/users/login',  {
+        email: $scope.email,
+        pass: $scope.pass,
+      }).then(successCallback, errorCallback);
+    }
+  };
 }];

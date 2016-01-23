@@ -68,7 +68,6 @@
 }
 
 
-
 .datepickr-dragging {
   background: #3097DA;
   color: #FFFFFF;
@@ -86,4 +85,8 @@
 .datepickr {
   padding: 4px 7px 10px;
   /*padding-bottom: 10px;*/
+}
+.selected {
+  background: #2980B9;
+	color: #FFFFFF;
 }

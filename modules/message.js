@@ -1,3 +1,5 @@
+'use strict';
+
 var mongoose = require('mongoose');
 
 var MessageSchema = mongoose.Schema({
@@ -20,7 +22,7 @@ var Message = module.exports = mongoose.model('Message', MessageSchema);
 
 module.exports.createMessage = function (newMessage, callback) {
   newMessage.save(callback);
-}
+};
 module.exports.findAll = function (user, callback) {
   Message.aggregate([{$match: {author: user}},{$group: {_id: "$date", num_prod: {$sum: 1}}}, {$sort: {date: 1}}], callback);
-}
+};

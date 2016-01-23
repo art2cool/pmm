@@ -1,3 +1,6 @@
+'use strict';
+
+
 var express = require('express');
 var router = express.Router();
 
@@ -7,8 +10,8 @@ router.post('/', function (req, res) {
   var user = req.body.user;
   Message.findAll(user, function(err, doc) {
     console.log(doc);
-    res.status(200).send(doc)
-  })
+    res.status(200).send(doc);
+  });
 });
 
 router.post('/:data', function (req, res) {
@@ -19,7 +22,7 @@ router.post('/:data', function (req, res) {
     if(err) throw err;
     console.log(doc);
     res.status(200).send(doc);
-  })
-})
+  });
+});
 
 module.exports = router;
