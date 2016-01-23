@@ -24,6 +24,24 @@ module.exports = ['$http', '$q', 'authToken', function($http, $q, authToken) {
     get: function () {
       return dayMessages;
     },
+    deleteMessage: function(messId) {
+
+      var successCallback = function () {
+        for(var i = 0; i < dayMessages.length; i++) {
+          if(dayMessages[i]._id === messId ) {
+            dayMessages.splice(i, 1);
+          }
+        }
+      };
+      var errorCallback = function (error) {
+        console.log(error);
+      };
+
+      $http.post('http://localhost:3000/message/remove', {id: messId})
+      .then(successCallback, errorCallback);
+
+
+    },
     setMessages: function (messageObj, callback) {
 
       var successCallback = function () {

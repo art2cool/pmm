@@ -20,7 +20,7 @@ $ npm install
 
 First Tab:
 ```sh
-$ node start
+$ npm start
 ```
 
 To run webpack Tab:

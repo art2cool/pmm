@@ -26,3 +26,7 @@ module.exports.createMessage = function (newMessage, callback) {
 module.exports.findAll = function (user, callback) {
   Message.aggregate([{$match: {author: user}},{$group: {_id: "$date", num_prod: {$sum: 1}}}, {$sort: {date: 1}}], callback);
 };
+
+module.exports.removeById = function(messId, callback) {
+  Message.remove({_id: messId}, callback);
+};

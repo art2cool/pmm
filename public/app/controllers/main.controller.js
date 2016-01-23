@@ -9,6 +9,10 @@ module.exports = ['$http', '$state', '$scope', '$timeout', 'authToken', 'dataMes
 
   $scope.dayMessages = messagesFactory.get();
 
+$scope.removeMessage = function(messId) {
+  messagesFactory.deleteMessage(messId);
+};
+
   $scope.submit = function () {
 
     var messageObj = {

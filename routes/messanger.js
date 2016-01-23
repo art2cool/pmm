@@ -25,5 +25,14 @@ router.post('/create', function (req, res) {
   });
 
 });
+router.post('/remove', function (req, res) {
+
+  Message.removeById(req.body.id, function(err, data) {
+    if (err) throw error;
+
+      res.status(200).send({message: 'removed'});
+    });
+  });
+
 
 module.exports = router;
