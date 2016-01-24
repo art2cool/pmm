@@ -28,9 +28,10 @@ module.exports = ['$scope', '$http', '$state', 'authToken',  function($scope, $h
       authToken.setToken(data.token);
       authToken.setUser(data.user.email);
 
-      setTimeout(function() {
-        $state.go('main');
+      var today = new Date();
 
+      setTimeout(function() {
+        $state.go('main.data', {'year': today.getFullYear(), 'month' : today.getMonth(), 'day' : today.getDate() });
       }, 1000);
     };
     if(isValid){

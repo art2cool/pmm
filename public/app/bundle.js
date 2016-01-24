@@ -56,7 +56,7 @@
 	
 	__webpack_require__(10);
 	__webpack_require__(11);
-	__webpack_require__(17);
+	__webpack_require__(18);
 	__webpack_require__(20);
 
 
@@ -29476,7 +29476,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".datepickr {\r\n  color: #333333;\r\n  display: block;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 16px;\r\n  width: 380px;\r\n  border: 1px solid #C0C0C0;\r\n/*//  border-radius: 5px;*/\r\n  padding: 0px;\r\n  padding-left: 10px;\r\n  background: #FFFFFF;\r\n  padding-bottom: 10px;\r\n\r\n  /* Disable selection */\r\n  -webkit-touch-callout: none;\r\n  -webkit-user-select: none;\r\n  -khtml-user-select: none;\r\n  -moz-user-select: none;\r\n  -ms-user-select: none;\r\n  user-select: none;\r\n}\r\n\r\n.datepickr-top {\r\n  margin-bottom: 10px;\r\n  text-align: center;\r\n}\r\n\r\n.datepickr-weekdays {\r\n  text-align: center;\r\n  /*margin: -15px;*/\r\n  padding-left: 0px;\r\n  display: block;\r\n}\r\n\r\n.datepickr-weekday {\r\n  display: inline-block;\r\n  width: 48px;\r\n  line-height: 29px;\r\n\r\n}\r\n\r\n.datepickr-left {\r\n  margin-right: 20px;\r\n}\r\n\r\n.datepickr-right {\r\n  margin-left: 20px;\r\n}\r\n\r\n.datepickr-left, .datepickr-right {\r\n  width: 29px;\r\n  line-height: 29px;\r\n  cursor: pointer;\r\n  display: inline-block;\r\n}\r\n\r\n.datepickr-left:hover, .datepickr-right:hover {\r\n  background: #DDDDD1;\r\n}\r\n\r\n.datepickr-day {\r\n  display: inline-block;\r\n  width: 52px;\r\n  line-height: 40px;\r\n  text-align: center;\r\n  cursor: pointer;\r\n  border: 1px solid #C0C0C0;\r\n}\r\n\r\n\r\n.datepickr-dragging {\r\n  background: #3097DA;\r\n  color: #FFFFFF;\r\n}\r\n\r\n.datepickr-dragnote {\r\n  font-size: 12px;\r\n  width: 90%;\r\n  margin: 0 auto;\r\n  margin-top: 5px;\r\n  display: block;\r\n  line-height: 18px;\r\n}\r\n\r\n.datepickr {\r\n  padding: 4px 7px 10px;\r\n  /*padding-bottom: 10px;*/\r\n}\r\n.selected {\r\n  background: #2980B9;\r\n\tcolor: #FFFFFF;\r\n}\r\n", ""]);
+	exports.push([module.id, ".datepickr {\r\n  color: #333333;\r\n  display: block;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 16px;\r\n  width: 380px;\r\n  border: 1px solid #C0C0C0;\r\n/*//  border-radius: 5px;*/\r\n  padding: 0px;\r\n  padding-left: 10px;\r\n  background: #FFFFFF;\r\n  padding-bottom: 10px;\r\n\r\n  /* Disable selection */\r\n  -webkit-touch-callout: none;\r\n  -webkit-user-select: none;\r\n  -khtml-user-select: none;\r\n  -moz-user-select: none;\r\n  -ms-user-select: none;\r\n  user-select: none;\r\n}\r\n\r\n.datepickr-top {\r\n  margin-bottom: 10px;\r\n  text-align: center;\r\n}\r\n\r\n.datepickr-weekdays {\r\n  text-align: center;\r\n  /*margin: -15px;*/\r\n  padding-left: 0px;\r\n  display: block;\r\n}\r\n\r\n.datepickr-weekday {\r\n  display: inline-block;\r\n  width: 48px;\r\n  line-height: 29px;\r\n\r\n}\r\n\r\n.datepickr-left {\r\n  margin-right: 20px;\r\n}\r\n\r\n.datepickr-right {\r\n  margin-left: 20px;\r\n}\r\n\r\n.datepickr-left, .datepickr-right {\r\n  width: 29px;\r\n  line-height: 29px;\r\n  cursor: pointer;\r\n  display: inline-block;\r\n}\r\n\r\n.datepickr-left:hover, .datepickr-right:hover {\r\n  background: #DDDDD1;\r\n}\r\n\r\n.datepickr-day {\r\n  display: inline-block;\r\n  width: 52px;\r\n  line-height: 40px;\r\n  text-align: center;\r\n  cursor: pointer;\r\n  border: 1px solid #C0C0C0;\r\n}\r\n\r\n.datepickr-dragging {\r\n  background: #3097DA;\r\n  color: #FFFFFF;\r\n}\r\n\r\n.datepickr-dragnote {\r\n  font-size: 12px;\r\n  width: 90%;\r\n  margin: 0 auto;\r\n  margin-top: 5px;\r\n  display: block;\r\n  line-height: 18px;\r\n}\r\n\r\n.datepickr {\r\n  padding: 4px 7px 10px;\r\n  /*padding-bottom: 10px;*/\r\n}\r\n.selected {\r\n  background: #2980B9;\r\n\tcolor: #FFFFFF;\r\n}\r\n", ""]);
 	
 	// exports
 
@@ -33866,7 +33866,8 @@
 	
 	app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', function($urlRouterProvider, $stateProvider, $httpProvider) {
 	
-	  $urlRouterProvider.otherwise('/messages');
+	  var day = new Date();
+	  $urlRouterProvider.otherwise('/messages/data' + '?year=' + day.getFullYear() + '&month=' + day.getMonth() + '&day=' + day.getDate());
 	
 	  $stateProvider
 	  .state('main', {
@@ -33883,7 +33884,8 @@
 	    }],
 	      messages: ['dataMessage', function (dataMessage) {
 	        return dataMessage.getMesagesServer();
-	      }]
+	      }],
+	
 	    },
 	    views: {
 	      'header': {
@@ -33899,16 +33901,29 @@
 	  .state('main.data', {
 	    url: '^/messages/data?year&month&day',
 	    resolve: {
+	      auth: ["$q", "$location", '$state', 'authToken',function($q, $location, $state, authToken) {
+	        var deferred = $q.defer();
+	          deferred.resolve();
+	
+	        if (!authToken.isAuthenticated()) {
+	          $location.path('/users/login');
+	        }
+	      return deferred.promise;
+	      }],
 	      data: ['$stateParams','messagesFactory', function($stateParams, messagesFactory) {
 	        return messagesFactory.getMesagessServer($stateParams);
 	        }
-	      ]
+	      ],
 	    },
 	    views: {
 	      'messages': {
 	        templateUrl: '/templates/messages.html',
 	        controller: "MainCtrl"
 	      },
+	      'calendar': {
+	        templateUrl: 'templates/calendar.html',
+	        controller: 'calendarCtrl'
+	      }
 	    }
 	  })
 	  .state('login', {
@@ -33969,6 +33984,7 @@
 	app.controller('HeaderCtrl', __webpack_require__(14));
 	app.controller('MainCtrl', __webpack_require__(15));
 	app.controller('HelperCtrl', __webpack_require__(16));
+	app.controller('calendarCtrl', __webpack_require__(17));
 
 
 /***/ },
@@ -34005,9 +34021,10 @@
 	      authToken.setToken(data.token);
 	      authToken.setUser(data.user.email);
 	
-	      setTimeout(function() {
-	        $state.go('main');
+	      var today = new Date();
 	
+	      setTimeout(function() {
+	        $state.go('main.data', {'year': today.getFullYear(), 'month' : today.getMonth(), 'day' : today.getDate() });
 	      }, 1000);
 	    };
 	    if(isValid){
@@ -34076,10 +34093,18 @@
 	'use strict';
 	
 	module.exports = ['$scope', '$http', 'authToken', '$state',  function($scope, $http, authToken, $state){
+	
+		/**
+		* username - shown in header
+		*/
 			$scope.username = authToken.getUser;
 		 	$scope.isAuthenticated = authToken.isAuthenticated;
 	
-	  		$scope.logout = function () {
+			/**
+			* @function This function logout current user and route to login page
+			*/
+	
+			$scope.logout = function () {
 	
 				$http.get('/users/logout').then(function() {
 					authToken.removeToken();
@@ -34101,18 +34126,33 @@
 
 	'use strict';
 	
-	module.exports = ['$http', '$state', '$scope', '$timeout', 'authToken', 'dataMessage', 'messagesFactory', function ($http, $state, $scope, $timeout, authToken, dataMessage, messagesFactory) {
+	module.exports = ['$http', '$location', '$state', '$scope', '$timeout', 'authToken', 'dataMessage', 'messagesFactory', function ($http, $location, $state, $scope, $timeout, authToken, dataMessage, messagesFactory) {
 	  $scope.username = authToken.getUser().split('@')[0];
-	  $scope.getMessages = function (day) {
 	
-	      $state.go('main.data', {'year': $scope.year, 'month' : $scope.month, 'day' : day });
-	  };
-	
+	  /**
+	  Getting messages for carrent day from messagesFacrory
+	  */
 	  $scope.dayMessages = messagesFactory.get();
 	
-	$scope.removeMessage = function(messId) {
-	  messagesFactory.deleteMessage(messId);
-	};
+	  /**
+	  * @function This function removes target message
+	  * @param {string} This is message id of removed messages
+	  */
+	
+	  $scope.removeMessage = function(messId) {
+	    messagesFactory.deleteMessage(messId);
+	  };
+	
+	/**
+	* Getting data from location params
+	*/
+	  var selectedDay = new Date($location.search().year, $location.search().month, $location.search().day);
+	  $scope.selectedDayMessages = selectedDay;
+	  $scope.date = selectedDay;
+	  
+	/**
+	* @function This function adds new message to this selected day
+	*/
 	
 	  $scope.submit = function () {
 	
@@ -34123,18 +34163,21 @@
 	      message: $scope.message
 	    };
 	
-	  messagesFactory.setMessages(messageObj, function () {
-	       $scope.complit = 'New task Added';
-	        $scope.dayMessages = messagesFactory.get();
-	        $timeout(function() {
-	          $scope.date = '';
-	          $scope.subject = '';
-	          $scope.message = '';
-	          $scope.complit = '';
+	    messagesFactory.setMessages(messageObj, function () {
+	      $scope.complit = 'New task Added';
+	      $scope.dayMessages = messagesFactory.get();
+	/**
+	* Clearing form after 2 sec
+	*/
+	      $timeout(function() {
+	        $scope.date = '';
+	        $scope.subject = '';
+	        $scope.message = '';
+	        $scope.complit = '';
 	
-	        }, 2000 );
-	  });
-	};
+	      }, 2000 );
+	    });
+	  };
 	
 	}];
 
@@ -34160,45 +34203,55 @@
 
 /***/ },
 /* 17 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	module.exports = ['$scope', '$state','calendarFactory', function($scope, $state, calendarFactory) {
+	  var monthNamesShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	
+	  /**
+	  * @function This function routign to selected day
+	  * @param {object} This is object with data of selected day
+	  */
+	
+	  $scope.getMessages = function (day) {
+	      $state.go('main.data', {'year': day.year, 'month' : day.month, 'day' : day.day });
+	  };
+	
+	  /**
+	  * @function This function change month in callendar
+	  * @param {string} 'right' next month or 'left'- month before
+	  */
+	
+	    $scope.changeDate = function (direction) {
+	      calendarFactory.setingMonth(direction);
+	      $scope.buidMonth();
+	    };
+	
+	    /**
+	    * @function getting data for building calendar view
+	    */
+	
+	    $scope.buidMonth = function () {
+	      $scope.year = calendarFactory.getYears();
+	      $scope.month = calendarFactory.getMonths();
+	      $scope.monthWord = monthNamesShort[$scope.month];
+	      $scope.days = calendarFactory.getDays();
+	    };
+	  $scope.buidMonth();
+	}];
+
+
+/***/ },
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var app = angular.module('MyApp');
 	
-	app.directive('calendar', __webpack_require__(18));
 	app.directive('dayPick', __webpack_require__(19));
-
-
-/***/ },
-/* 18 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	module.exports = ['calendarFactory', function(calendarFactory){
-	  return {
-	    templateUrl: "templates/calendar.html",
-	    restrict: 'E',
-	    controller: function($scope) {
-	      var monthNamesShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-	        $scope.changeDate = function (direction) {
-	          calendarFactory.setingMonth(direction);
-	          var a = angular.element(document).find('.selected');
-	          a.removeClass('selected');
-	          $scope.buidMonth();
-	        };
-	        $scope.buidMonth = function () {
-	          $scope.year = calendarFactory.getYears();
-	          $scope.month = calendarFactory.getMonths();
-	          $scope.monthWord = monthNamesShort[$scope.month];
-	          $scope.days = calendarFactory.getDays();
-	
-	        };
-	      $scope.buidMonth();
-	    },
-	  };
-	}];
 
 
 /***/ },
@@ -34209,15 +34262,7 @@
 	
 	module.exports = function() {
 	  return {
-	    restrict: 'E',
-	    replace: true,
-	    scope: {
-	      month: '@',
-	      year: '@',
-	      day: '@',
-	      count: '@'
-	    },
-	    template: "<span ng-click='$parent.getMessages(day)' count='{{day.count}}' class='datepickr-day' day='{{day.day}}' month='{{month}}' year='{{year}}'>{{day}} <sup><span  class='label label-info'>{{count}}</span></sup></span>",
+	    restrict: 'A',
 	    link: function (scope, element) {
 	
 	      element.bind('mouseover', function () {
@@ -34226,7 +34271,7 @@
 	      element.bind('mouseleave', function () {
 	        element.css('background-color', '');
 	      });
-	      element.click('mousedown', function () {
+	      element.bind('click', function () {
 	        var a = angular.element(document).find('.selected');
 	        a.removeClass('selected');
 	        element.addClass('selected');
@@ -34266,29 +34311,67 @@
 	  var userToken = 'userToken';
 	
 	  var authToken = {
+	
+	    /**
+	    * @function set user token to the localStorage
+	    * @param {string} user token
+	    */
+	
 	    setToken: function(token) {
 	      cashedToken = token;
 	      storage.setItem (userToken, token);
 	    },
+	
+	    /**
+	    * @function getuser token from the localStorage
+	    * @param {string} user token
+	    */
+	
 	    getToken: function () {
 	      if(!cashedToken) {
 	        cashedToken = storage.getItem(userToken);
 	      }
 	      return cashedToken;
 	    },
+	
+	    /**
+	    * @function check is user token in localStorage
+	    */
+	
 	    isAuthenticated: function() {
 	      return !!authToken.getToken();
 	    },
+	
+	    /**
+	    * @function remove token from localStorage
+	    */
+	
 	    removeToken: function () {
 	      cashedToken = null;
 	      storage.removeItem(userToken);
 	    },
+	
+	    /**
+	    * @function set users name to the localStorage
+	    * @param {string} user name
+	    */
+	
 	    setUser: function (username) {
 	      storage.setItem ('user', username);
 	    },
+	
+	    /**
+	    * @function getting user from localStorage
+	    */
+	    
 	    getUser: function () {
-	       return storage.getItem ('user');
+	      return storage.getItem ('user');
 	    },
+	
+	    /**
+	    * @function remove user from localStorage
+	    */
+	
 	    removeUser: function () {
 	      storage.removeItem('user');
 	    }
@@ -34305,6 +34388,10 @@
 	
 	module.exports = ['authToken', function(authToken) {
 	  return {
+	    /**
+	    * @function added to headers user token
+	    * @param {object} config from app.config.js
+	    */
 	    request: function (config) {
 	      var token = authToken.getToken();
 	      if(token) {
@@ -34328,6 +34415,12 @@
 	module.exports = ['$q','$http', '$state', 'authToken', function($q, $http, $state, authToken) {
 	var messages = [];
 	    return {
+	
+	      /**
+	      * @function This function getting count of messages from server and save to cache messages
+	      * @returns {Object} promise for state
+	      */
+	
 	      getMesagesServer: function () {
 	        var deferred = $q.defer();
 	
@@ -34344,11 +34437,16 @@
 	
 	        return deferred.promise;
 	      },
+	
+	      /**
+	      * @function This function geting curent messages from cache
+	      * @returns {Array} of objects with date and count messages in this day
+	      */
+	
 	      getMesages: function () {
 	        return messages;
 	      }
 	    };
-	
 	}];
 
 
@@ -34379,14 +34477,20 @@
 	'use strict';
 	
 	module.exports = ['dateBuilder','dataMessage', function (dateBuilder, dataMessage) {
-	  var endOf;
-	  var messages = dataMessage.getMesages();
+	
+	  /**
+	  * @function This function creating array of month Days;
+	  * @param {number} firstDay is position on a week about first day in building month
+	  * @param {number} first Day is position on a week about last day in building month
+	  * @returns {Array} array of Days Objets for a current month
+	  */
 	
 	  function createMonthDays(firstDay, lastDay) {
-	    var i, array = [];
+	    var messages = dataMessage.getMesages(),
+	        endOf, i, array = [];
 	
-	    var curentDate = dateBuilder.getCurrentDate();
-	    var y = curentDate.getFullYear(),
+	    var curentDate = dateBuilder.getCurrentDate(),
+	        y = curentDate.getFullYear(),
 	        m = curentDate.getMonth();
 	
 	    for (i = 0; i < firstDay; i++) {
@@ -34418,30 +34522,54 @@
 	  }
 	
 	  return {
+	
+	    /**
+	    * @function This function return current selected year
+	    * @returns {number} curent year
+	    */
+	
 	    getYears: function () {
 	      return dateBuilder.getCurrentDate().getFullYear();
 	    },
+	
+	    /**
+	    * @function This function return current selected month
+	    * @returns {number} curent month
+	    */
+	
 	    getMonths: function () {
 	      return dateBuilder.getCurrentDate().getMonth();
 	    },
+	
+	    /**
+	    * @function This function return array of days
+	    * @returns {Array} with days objects
+	    */
+	
 	    getDays: function () {
 	      var curentDate = dateBuilder.getCurrentDate(),
 	          y = curentDate.getFullYear(),
 	          m = curentDate.getMonth();
 	
-	      var firstDay = new Date(y, m, 1);
-	      var lastDay = new Date(y, m + 1, 0);
+	      var firstDay = new Date(y, m, 1),
+	          lastDay = new Date(y, m + 1, 0);
 	
 	      return createMonthDays(firstDay.getDay(), lastDay.getDate());
 	    },
+	
+	    /**
+	    * @function This function set new seleted month
+	    * @param {string} getting 'right' or 'left' direction of chooses month
+	    */
+	
 	    setingMonth: function (direction) {
 	      var curentDate = dateBuilder.getCurrentDate(),
 	          y = curentDate.getFullYear(),
 	          m = curentDate.getMonth();
 	
 	      if(direction === 'right') {
-	          dateBuilder.setCurrentDate(new Date(y,m+2,0));
-	      } else {
+	        dateBuilder.setCurrentDate(new Date(y,m+2,0));
+	      } else if(direction === 'left') {
 	        dateBuilder.setCurrentDate(new Date(y,m,0));
 	      }
 	    },
@@ -34458,12 +34586,18 @@
 	module.exports = ['$http', '$q', 'authToken', function($http, $q, authToken) {
 	  var dayMessages= [];
 	  return {
+	
+	    /**
+	    * @function This function getting messages for seleted day from server and save to cache dayMessages
+	    * @param {Object} from state (for example - {year: "2016", month: "0", day: "28"})
+	    * @returns {Object} promise for state
+	    */
+	
 	    getMesagessServer: function (param) {
 	
+	      console.log(param);
 	      var deferred = $q.defer();
-	
 	      var user = {user: authToken.getUser()};
-	
 	      var successCallback = function (data) {
 	        dayMessages = data.data;
 	        deferred.resolve();
@@ -34476,9 +34610,21 @@
 	      $http.post('http://localhost:3000/messages/data' + '?year=' + param.year + '&month=' + param.month + '&day=' + param.day, user).then(successCallback, errorCallback);
 	      return deferred.promise;
 	    },
+	
+	    /**
+	    * @function This function geting curent Day messages from cache
+	    * @returns {Array} of objects with Day messages
+	    */
+	
 	    get: function () {
 	      return dayMessages;
 	    },
+	
+	    /**
+	    * @function This function remove selected message from server and cache
+	    * @param {string} removed messages ID
+	    */
+	
 	    deleteMessage: function(messId) {
 	
 	      var successCallback = function () {
@@ -34497,15 +34643,38 @@
 	
 	
 	    },
+	
+	    /**
+	    * @function This function add new message in server and  to the cache
+	    * @param {Object} object with new message
+	    */
+	
 	    setMessages: function (messageObj, callback) {
 	
 	      var successCallback = function () {
-	        dayMessages.push({
-	          subject: messageObj.subject,
-	          message: messageObj.message,
-	          date: messageObj.date
+	
+	        if(dayMessages[0]) {
+	          var current = new Date(dayMessages[0].date);
+	
+	          if(current.getMonth() === messageObj.date.getMonth() && current.getFullYear() === messageObj.date.getFullYear() && current.getDate() === messageObj.date.getDate()) {
+	
+	            dayMessages.push({
+	              subject: messageObj.subject,
+	              message: messageObj.message,
+	              date: messageObj.date
+	            });
+	          }
+	        } else {
+	
+	          dayMessages.push({
+	            subject: messageObj.subject,
+	            message: messageObj.message,
+	            date: messageObj.date
 	          });
-	          callback();
+	
+	        }
+	        callback();
+	
 	      };
 	      var errorCallback = function (error) {
 	        console.log(error);
