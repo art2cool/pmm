@@ -1,3 +1,5 @@
+<div class="row">
+  <h3>{{username+"'s"}} messages</h3>
 <div class='datepickr'>
   <div class='datepickr-top'>
     <span ng-click='changeDate("left")' class='datepickr-left'>&lt;</span>
@@ -17,5 +19,14 @@
   <span class='datepickr-weekday'>Sa</span>
 </div>
 <div class='datepickr-days' >
-  <day-pick  ng-repeat='day in days track by $index'></day-pick>
+  <div >
+    <span day-pick ng-repeat='day in days track by $index' ng-click='getMessages(day)' count='{{day.count}}' class='datepickr-day' day='{{day.day}}' month='{{month}}' year='{{year}}'>{{day.day}}
+      <sup>
+        <span class='label label-info'>{{day.count}}</span>
+      </sup>
+  </span>
+</div>
+</div>
+
+
 </div>

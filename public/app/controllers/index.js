@@ -7,3 +7,4 @@ app.controller('RegisterCtrl', require('./register.controller.js'));
 app.controller('HeaderCtrl', require('./header.controller.js'));
 app.controller('MainCtrl', require('./main.controller.js'));
 app.controller('HelperCtrl', require('./helper.controller.js'));
+app.controller('calendarCtrl', require('./calendar.controller.js'));
