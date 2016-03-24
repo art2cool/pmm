@@ -7,6 +7,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
       <ul class="nav navbar-nav navbar-right">
+          <li><a href="#" ui-sref="admin" ng-show="isAuthenticated()">Admin</a></li>
           <li><a href="#" ui-sref="login" ng-hide="isAuthenticated()">Login</a></li>
           <li><a href="#" ng-show="isAuthenticated()">{{username()}}</a></li>
           <li><a href="#" ng-click="logout()" ng-show="isAuthenticated()">Log out</a></li>

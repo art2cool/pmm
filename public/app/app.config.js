@@ -8,6 +8,31 @@ app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', function($u
   $urlRouterProvider.otherwise('/messages/data' + '?year=' + day.getFullYear() + '&month=' + day.getMonth() + '&day=' + day.getDate());
 
   $stateProvider
+     $stateProvider
+    .state('admin', {
+      url: '/admin',
+      resolve: {
+        auth: ["$q", "$location", '$state', 'authToken',function($q, $location, $state, authToken) {
+          var deferred = $q.defer();
+            deferred.resolve();
+
+          if (!authToken.isAuthenticated()) {
+            $location.path('/users/login');
+          }
+        return deferred.promise;
+       }]
+      },
+      views: {
+        'header': {
+          templateUrl: '/templates/header.html',
+          controller: "HeaderCtrl"
+        },
+        'content': {
+          templateUrl: '/templates/admin.html',
+          controller: "AdminCtrl"
+        },
+      },
+    })
   .state('main', {
     url: '/messages',
     resolve: {
@@ -19,7 +44,7 @@ app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', function($u
           $location.path('/users/login');
         }
       return deferred.promise;
-    }],
+     }],
       messages: ['dataMessage', function (dataMessage) {
         return dataMessage.getMesagesServer();
       }],
@@ -44,6 +69,7 @@ app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', function($u
           deferred.resolve();
 
         if (!authToken.isAuthenticated()) {
+          deferred.reject();
           $location.path('/users/login');
         }
       return deferred.promise;

@@ -12,9 +12,10 @@ module.exports = ['$http', '$q', 'authToken', function($http, $q, authToken) {
 
     getMesagessServer: function (param) {
 
-      console.log(param);
       var deferred = $q.defer();
-      var user = {user: authToken.getUser()};
+      var user = {
+        user: authToken.getUser()
+      };
       var successCallback = function (data) {
         dayMessages = data.data;
         deferred.resolve();
