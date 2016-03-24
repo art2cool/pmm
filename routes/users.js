@@ -15,6 +15,17 @@ function ensureAuthenticated(req, res, next) {
       res.status(401).send('login in pls');
 }
 
+function isAdmin(req, res, next) {
+
+  console.log(req.user);
+  if (req.user.admin === true) {
+    console.log("admin");
+    return next();
+  } 
+    console.log("not admin");
+  res.status(401).send('login in pls'); 
+}
+
 function createToken(user, res) {
   var payload = {
     sub: user.id
@@ -93,7 +104,7 @@ var loginStrategy = new LocalStrategy(
         if(err) return done(err);
 
         if(isMatch) {
-            return done(null, user);
+          return done(null, user);
         } else {
           return done(null, false, {message: 'Invalid password'});
         }
@@ -114,9 +125,9 @@ router.post('/login', passport.authenticate('local-login'), function (req, res) 
 });
 
 
-router.get('/help', ensureAuthenticated, function (req, res) {
+router.get('/help', isAdmin, function (req, res) {
   var faq = {
-    title: 'dont be afraide',
+    title: 'Only Admin can see that page',
     body: 'Endeavor bachelor but add eat pleasure doubtful sociable. Age forming covered you entered the examine. Blessing scarcely confined her contempt wondered shy. Dashwoods contented sportsmen at up no convinced cordially affection. Am so continued resembled frankness disposing engrossed dashwoods. Earnest greater on no observe fortune norland. Hunted mrs ham wishes stairs. Continued he as so breakfast shameless. All men drew its post knew. Of talking of calling however civilly wishing resolve. '+
     'Ignorant saw her her drawings marriage laughter. Case oh an that or away sigh do here upon. Acuteness you exquisite ourselves now end forfeited. Enquire ye without it garrets up himself. Interest our nor received followed was. Cultivated an up solicitude mr unpleasant. '
   };

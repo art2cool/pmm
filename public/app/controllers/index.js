@@ -8,3 +8,4 @@ app.controller('HeaderCtrl', require('./header.controller.js'));
 app.controller('MainCtrl', require('./main.controller.js'));
 app.controller('HelperCtrl', require('./helper.controller.js'));
 app.controller('calendarCtrl', require('./calendar.controller.js'));
+app.controller('AdminCtrl', require('./admin.controller.js'));

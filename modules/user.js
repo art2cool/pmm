@@ -39,7 +39,9 @@ module.exports.createUser = function (newUser, callback) {
 module.exports.comparePassword = function(pass, pass2, callback) {
     bcrypt.compare(pass, pass2, callback);
 };
+
 module.exports.updateMessage = function (data, callback) {
   var user = data.author;
   User.update({email: user}, {$push: {meessages_id: data._id}}, callback);
 };
+
